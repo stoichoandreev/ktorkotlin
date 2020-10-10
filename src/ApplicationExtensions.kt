@@ -1,5 +1,6 @@
 package com.sniper.ktor
 
+import com.sniper.ktor.comments.CommentRepository
 import com.sniper.ktor.person.PersonRepository
 import com.sniper.ktor.tutorial.TutorialRepository
 import io.ktor.application.*
@@ -89,6 +90,23 @@ fun Application.main() {
             errorAware {
                 TutorialRepository.clearAll()
                 call.respondSuccessfulJson()
+            }
+        }
+
+        //Get Comment by id
+        get(COMMENT_ENDPOINT) {
+            errorAware {
+                val id: String = call.getParamValueOrException(PARAM_ID)
+                val responseData = CommentRepository.get(id)
+                call.respond(responseData)
+            }
+        }
+
+        //Get All Comments
+        get(COMMENT_ALL_ENDPOINT) {
+            errorAware {
+                val responseData = CommentRepository.getAll()
+                call.respond(responseData)
             }
         }
     }
