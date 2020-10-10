@@ -34,6 +34,12 @@ fun Application.main() {
                 call.respond(PersonRepository.getAll())
             }
         }
+        delete(PERSON_GET_ENDPOINT) {
+            errorAware {
+                val id: String = call.getParamValueOrException(PARAM_ID)
+                call.respond(PersonRepository.remove(id))
+            }
+        }
     }
 }
 
