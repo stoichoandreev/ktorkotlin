@@ -109,6 +109,32 @@ fun Application.main() {
                 call.respond(responseData)
             }
         }
+
+        //Get Comment by Person id
+        get(COMMENT_PERSON_ENDPOINT) {
+            errorAware {
+                val id: String = call.getParamValueOrException(PARAM_ID)
+                val responseData = CommentRepository.get(id)
+                call.respond(responseData)
+            }
+        }
+
+        //Delete Comment by id
+        delete(COMMENT_ENDPOINT) {
+            errorAware {
+                val id: String = call.getParamValueOrException(PARAM_ID)
+                val responseData = CommentRepository.remove(id)
+                call.respond(responseData)
+            }
+        }
+
+        //Delete all Comments
+        delete(COMMENT_ALL_ENDPOINT) {
+            errorAware {
+                CommentRepository.clearAll()
+                call.respondSuccessfulJson()
+            }
+        }
     }
 }
 
