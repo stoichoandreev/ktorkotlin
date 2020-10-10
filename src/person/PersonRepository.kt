@@ -40,4 +40,6 @@ object PersonRepository {
 
     fun remove(id: Int): Boolean = remove(get(id))
 
+    fun clearAll() = personList.clear()
+
 }
