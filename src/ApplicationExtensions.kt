@@ -28,14 +28,16 @@ fun Application.main() {
         get(PERSON_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
-                call.respond(PersonRepository.get(id))
+                val responseData = PersonRepository.get(id)
+                call.respond(responseData)
             }
         }
 
         //Get All People
         get(PERSON_ALL_ENDPOINT) {
             errorAware {
-                call.respond(PersonRepository.getAll())
+                val responseData = PersonRepository.getAll()
+                call.respond(responseData)
             }
         }
 
@@ -43,7 +45,8 @@ fun Application.main() {
         delete(PERSON_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
-                call.respond(PersonRepository.remove(id))
+                val responseData = PersonRepository.remove(id)
+                call.respond(responseData)
             }
         }
 
@@ -59,14 +62,16 @@ fun Application.main() {
         get(TUTORIAL_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
-                call.respond(TutorialRepository.get(id))
+                val responseData = TutorialRepository.get(id)
+                call.respond(responseData)
             }
         }
 
         //Get All Tutorials
         get(TUTORIAL_ALL_ENDPOINT) {
             errorAware {
-                call.respond(TutorialRepository.getAll())
+                val responseData = TutorialRepository.getAll()
+                call.respond(responseData)
             }
         }
 
@@ -74,7 +79,8 @@ fun Application.main() {
         delete(TUTORIAL_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
-                call.respond(TutorialRepository.remove(id))
+                val responseData = TutorialRepository.remove(id)
+                call.respond(responseData)
             }
         }
 
