@@ -23,21 +23,27 @@ fun Application.main() {
         }
     }
     routing {
-        get(PERSON_GET_ENDPOINT) {
+        get(PERSON_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
                 call.respond(PersonRepository.get(id))
             }
         }
-        get(PERSON_GET_ALL_ENDPOINT) {
+        get(PERSON_ALL_ENDPOINT) {
             errorAware {
                 call.respond(PersonRepository.getAll())
             }
         }
-        delete(PERSON_GET_ENDPOINT) {
+        delete(PERSON_ENDPOINT) {
             errorAware {
                 val id: String = call.getParamValueOrException(PARAM_ID)
                 call.respond(PersonRepository.remove(id))
+            }
+        }
+        delete(PERSON_ALL_ENDPOINT) {
+            errorAware {
+                PersonRepository.clearAll()
+                call.respondSuccessfulJson()
             }
         }
     }
