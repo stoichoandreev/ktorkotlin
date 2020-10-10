@@ -1,5 +1,6 @@
 package com.sniper.ktor.comments
 
-data class Comment (val text: String, val personId: Int) {
-    var id: Int? = null
-}
+import com.sniper.ktor.common.Entity
+
+
+data class Comment(val text: String, val personId: Int): Entity()
